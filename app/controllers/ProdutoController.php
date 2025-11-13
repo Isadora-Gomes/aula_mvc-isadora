@@ -52,14 +52,23 @@ class ProdutoController
         include __DIR__ . '/../views/produtos/editar.php';
     }
 
-    public function excluir($id) {
-        $produto = new Produto();
-        
-        if ($produto->excluir($id)) {
-            header("Location: index.php?controller=produto&action=listar");
-        } else {
-            header("Location: index.php?controller=produto&action=criar");
-        }
+  public function excluir() {
+    if (!isset($_GET['id']) || empty($_GET['id'])) {
+        header("Location: index.php?controller=produto&action=listar");
         exit();
     }
+
+    $id = (int) $_GET['id'];
+
+    $produto = new Produto();
+    
+    if ($produto->excluir($id)) {
+        header("Location: index.php?controller=produto&action=listar&msg=excluido");
+    } else {
+        header("Location: index.php?controller=produto&action=listar&msg=erro");
+    }
+    exit();
+}
+
+
 }

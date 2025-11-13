@@ -30,18 +30,20 @@
                         <td><?= htmlspecialchars($user['preco_produto']) ?></td>
                         <td><?= htmlspecialchars($user['categoria_produto']) ?></td>
                         <td>
-                                    <div class="acoes">
-                                        <a href="index.php?controller=produto&action=editar&id=<?= $user['id'] ?>" 
-                                           class="btn btn-warning btn-sm">
-                                             Editar
-                                        </a>
-                                        <a href="index.php?controller=produto&action=excluir&id=<?= $user['id'] ?>" 
-                                           class="btn btn-danger btn-sm"
-                                           onclick="return confirm('Tem certeza que deseja excluir <?= htmlspecialchars($p['nome_produto']) ?>?')">
-                                             Excluir
-                                        </a>
-                                    </div>
-                                </td>
+    <div class="acoes">
+        <a href="index.php?controller=produto&action=editar&id=<?= (int)$user['id'] ?>" 
+           class="btn btn-warning btn-sm">
+            Editar
+        </a>
+
+        <a href="javascript:void(0);"
+           class="btn btn-danger btn-sm"
+           onclick="confirmarExclusao(<?= (int)$user['id']; ?>);">
+            Excluir
+        </a>
+    </div>
+</td>
+
                     </tr>
                 <?php endforeach; ?>
             </tbody>
@@ -50,6 +52,23 @@
             &copy; <?= date('Y') ?> - Sistema MVC em PHP Puro
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+    function confirmarExclusao(id) {
+        Swal.fire({
+            title: 'Tem certeza?',
+            text: 'Essa ação não poderá ser desfeita!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sim, excluir',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = 'index.php?controller=produto&action=excluir&id=' + id;
+            }
+        });
+    }
+    </script>
 </body>
 
 </html>

@@ -60,11 +60,14 @@ class Produto
 
 
     public function excluir($id) {
-        $query = "DELETE FROM " . $this->table . " WHERE id = :id";
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':id_produtos', $id);
-        
-        return $stmt->execute();
-    }
+    $query = "DELETE FROM " . $this->table . " WHERE id = :id"; 
+    $stmt = $this->conn->prepare($query);
+
+    $id = (int) $id;
+    $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+    
+    return $stmt->execute();
+}
+
 
 }
