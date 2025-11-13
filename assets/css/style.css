@@ -4,11 +4,13 @@
     --gray: #555;
     --light-gray: #f5f5f5;
     --primary: #a083c9;
+    --primary-light: #cdb9ef;
     --secondary: #773cbd;
     --success: #28a745;
     --danger: #dc3545;
     --border-radius: 10px;
     --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 30px rgba(0,0,0,0.12);
     --transition: 0.3s ease-in-out;
 }
 
@@ -32,6 +34,65 @@ body {
     border-radius: var(--border-radius);
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 1.4rem;
+    color: var(--secondary);
+}
+
+.btn {
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.btn-primary:hover { background: var(--secondary); }
+
+.btn-success {
+    background: var(--primary);
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    border: none;
+    transition: background var(--transition), transform 0.12s ease;
+    font-size: 1.08rem;
+}
+.btn-success:hover {
+    background: var(--secondary);
+    transform: translateY(-1px);
+}
+.btn-secondary {
+    background: #f0f0f0;
+    color: var(--gray);
+    font-size: 0.9rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+}
+
+.alert { padding: 12px; border-radius: 8px; margin-bottom: 1rem; }
+.alert-danger { background: var(--danger); color: white; }
+
+.badge { padding: 6px 10px; border-radius: 999px; font-size: 0.85rem; background: var(--primary); color: white; }
+
+.form-container { max-width: 680px; margin: 0 auto; }
+.content { padding: 0 0 0.5rem 0; }
 
 h1,
 h2,
@@ -108,6 +169,25 @@ form {
     gap: 15px;
 }
 
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: stretch;
+}
+
+.form-group > label {
+    margin: 0;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    box-sizing: border-box;
+}
+
 .acoes {
     display: flex;
     gap: 0.5rem;
@@ -145,6 +225,16 @@ label {
 
 input[type="text"],
 input[type="email"] {
+    padding: 10px;
+    border-radius: var(--border-radius);
+    border: 1px solid #ccc;
+    transition: var(--transition);
+    font-size: 15px;
+}
+
+input[type="number"],
+input[type="password"],
+textarea, select {
     padding: 10px;
     border-radius: var(--border-radius);
     border: 1px solid #ccc;
